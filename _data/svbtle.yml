@@ -6,7 +6,7 @@ website_url: http://ilo.gs
 website_url_text: cat /dev/life >> /dev/stdout
 website_url_about: http://ilo.gs/about
 website_name: cat /dev/life
-email_with_subject: mailto:my@mysqto?subject=[From%20Your%20Blog]
+email_with_subject: mailto:my@mysq.to?subject=[From%20Your%20Blog]
 twitter: mysqto
 feed_url: http://feeds.feedburner.com/hdily
 typekit_url: typekiturlhere
