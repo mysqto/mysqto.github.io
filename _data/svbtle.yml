@@ -1,0 +1,18 @@
+---
+subtitle: "cat /dev/life >> /dev/stdout"
+profile_url: http://about.me/mysqto
+profile_name: Chen Lei
+website_url: http://ilo.gs
+website_url_text: cat /dev/life >> /dev/stdout
+website_url_about: http://ilo.gs/about
+website_name: cat /dev/life
+email_with_subject: mailto:my@mysqto?subject=[From%20Your%20Blog]
+twitter: mysqto
+feed_url: http://feeds.feedburner.com/hdily
+typekit_url: typekiturlhere
+ga_account: UA-35936455-1
+ga_domain: ilo.gs
+
+# Enable kudos widget
+enable_kudos: true
+kudos_url: http://ilogs.herokuapp.com/kudos
