@@ -299,13 +299,14 @@ article:nth-child(3)::before,
 }
 
 .post .highlight {
-	max-width: none;
+	max-width: 550px;
 	text-align: justify;
 	background-color: rgb(248, 248, 248);
 	color: black;
 	border: 1px solid rgba(144, 144, 144, .3);
-	border-left: none;
-	border-right: none;
+        border-radius:3px;
+        padding:6px 10px;
+        word-wrap: break-word;
 }
 
 .post *,
