@@ -6,7 +6,8 @@ tags: linux ubuntu l2tp ipsec
 year: 2014
 month: 06
 day: 15
-published: false
+published: true
+customid: 20140615_ubuntu_l2tp
 summary: How to install L2TP/IPSEC Server on Ubuntu Server (14.04) and configure for usage.
 image: idev/ubuntu-l2tp-ipsec.png
 ---
