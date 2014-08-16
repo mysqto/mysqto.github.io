@@ -12,7 +12,7 @@ summary: A clone of kepbod color scheme for mintty.
 ---
 
 I'm using xshell under windows for linux remote access and cygwin and msys for some linux/unix features as well. As xshell, [kepbod color scheme](https://github.com/kepbod/colour_kepbod) is the best choice. So I port it for mintty use.
-```
+```bash
 ForegroundColour    =   197,200,198
 BackgroundColour    =   39,40,34
 CursorColour        =   253,157,79
