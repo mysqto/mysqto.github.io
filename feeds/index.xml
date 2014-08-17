@@ -4,11 +4,11 @@ layout: nil
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
- <title>Orlando Del Aguila Blog</title>
- <link href="{{site.root_uri}}/feeds/articles.xml" rel="self"/>
- <link href="{{site.root_uri}}/"/>
+ <title>{{ site.data.svbtle.website_title }}</title>
+ <link href="{{ site.data.svbtle.website_url }}/feeds/articles.xml" rel="self"/>
+ <link href="{{ site.data.svbtle.website_url }}/"/>
  <updated>{{ site.time | date_to_xmlschema }}</updated>
- <id>{{site.root_uri}}/</id>
+ <id>{{ site.data.svbtle.website_url }}/</id>
  <author>
    <name>PLUG &#8211; Provence Linux User Group</name>
    <email>contact@plugfr.org</email>
@@ -17,9 +17,9 @@ layout: nil
  {% for post in site.posts limit:20 offset:0 %}
  <entry>
    <title>{{ post.title }}</title>
-   <link href="{{site.root_uri}}{{ post.url }}"/>
+   <link href="{{ site.data.svbtle.website_url }}{{ post.url }}"/>
    <updated>{{ post.date | date_to_xmlschema }}</updated>
-   <id>{{site.root_uri}}{{ post.id }}</id>
+   <id>{{ site.data.svbtle.website_url }}{{ post.id }}</id>
    <content type="html">{{ post.content | xml_escape }}</content>
  </entry>
  {% endfor %}
