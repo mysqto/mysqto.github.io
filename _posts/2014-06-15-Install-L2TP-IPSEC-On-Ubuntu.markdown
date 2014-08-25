@@ -184,7 +184,7 @@ conn L2TP-PSK-noNAT
         type=transport
         #because we use l2tp as tunnel protocol
 
-        left=106.186.30.177
+        left=***.***.***.***
         #fill in server IP above
 
         leftprotoport=17/1701
