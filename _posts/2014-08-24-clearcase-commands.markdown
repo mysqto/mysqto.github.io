@@ -6,7 +6,7 @@ tags: clearcase idev cmd
 year: 2014
 month: 08
 day: 24
-published: true
+published: false
 customid: 20140824_CLEARCASE_CMD
 summary: some common used clearcase commandlines got from my daily work.
 image: idev/ubuntu-l2tp-ipsec.png
