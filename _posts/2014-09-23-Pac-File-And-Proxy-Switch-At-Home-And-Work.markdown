@@ -24,7 +24,7 @@ The myIpAddress function assumes that the device's has a single IPv4 address. Th
 >The `isInNet` function evaluates the IP address of a hostname, and if within a specified subnet returns true. If a hostname is passed the function will resolve the hostname to an IP address.
 
 Ok, now I got what I need to. Here is the overall struct of my PAC file
-```javascript
+```js
 function FindProxyForURL(url, host)
 {
     // get local IP address, client IP address
