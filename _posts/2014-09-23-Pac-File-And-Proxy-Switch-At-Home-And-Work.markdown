@@ -24,7 +24,7 @@ The myIpAddress function assumes that the device's has a single IPv4 address. Th
 >The `isInNet` function evaluates the IP address of a hostname, and if within a specified subnet returns true. If a hostname is passed the function will resolve the hostname to an IP address.
 
 Ok, now I got what I need to. Here is the overall struct of my PAC file
-```
+```javascript
 function FindProxyForURL(url, host)
 {
     // get local IP address, client IP address
@@ -70,7 +70,7 @@ Now, just add this file to browser network settings. It works well on firefox,ch
 
 And Microsoft also provided a temporary workaround by enable it via registry key `HKLM\SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\` with `EnableLegacyAutoProxyFeatures` set to 1.
 
-```
+```Registry
 Windows Registry Editor Version 5.00
 
 [HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\Internet Settings]
