@@ -22,11 +22,13 @@ sudo apt-get --no-install-recommends install xl2tpd openswan ppp pptpd
 
 2. After all apps installed we need to conifuguration the system and apps to make all services run well as we wish. First, we need to set the firewall and make the kernel forward the ip packet.
 For l2tp/ipsec:
+
 ```bash
 iptables -t nat -A POSTROUTING -s 172.16.0.0/16 -o eth0 -j MASQUERADE
 ```
 
  For pptp:
+
 ```bash
 iptables -A FORWARD -p tcp --syn -s 172.16.0.0/16 -j TCPMSS --set-mss 1356
 ```
@@ -35,6 +37,7 @@ iptables -A FORWARD -p tcp --syn -s 172.16.0.0/16 -j TCPMSS --set-mss 1356
 `172.16.0.0/16` is the ip range vpn we want the client to use when connected. You can use any [private network ip](http://en.wikipedia.org/wiki/Private_network#Private_IPv4_address_spaces) address you want. Remember to make this different from your local network ip address.
 
 3. Second, we will disable `accept_redirects` and `send_redirects` to disable the kernel ICP redirects:
+
 ```bash
     for each in /proc/sys/net/ipv4/conf/*
         do
@@ -44,6 +47,7 @@ iptables -A FORWARD -p tcp --syn -s 172.16.0.0/16 -j TCPMSS --set-mss 1356
 ```
 
 4. Finally, we will enable the ip packet forwarding and disable the kernel ICP redirects for boot by adding the following lines at the end of `/etc/sysctl.conf`:
+
 ```bash
 net.ipv4.ip_forward = 1
 net.ipv4.conf.all.accept_redirects = 0
@@ -56,6 +60,7 @@ net.ipv4.icmp_ignore_bogus_error_responses = 1
 
 Note: We can create a customized init script to do the 1st and 2nd steps automatically with the following steps:
 1). Create a customized service script `/etc/init.d/vpn`(You can use any file name here):
+
 ```bash
 #!/bin/sh
 # Customized startup script for L2TP/IPSec, PPTP
@@ -113,11 +118,13 @@ esac
 ```
 
 This script will update the firewall settings when you startup the `ipsec`, `xl2tpd` and `pptpd` services. You need add executive permission to this file:
+
 ```bash
 sudo chmod 755 vpn
 ```
 
 2). And then replace the default `ipsec`, `xl2tpd` and `pptpd` init script with this customized script:
+
 ```bash
 update-rc.d -f ipsec remove
 update-rc.d -f xl2tpd remove
@@ -126,6 +133,7 @@ update-rc.d vpn defaults
 ```
 
 5. Now we can configure `pptpd`, `xl2tpd`, and `p2tpd` separately. For `pptp`, we just need to configure the `/etc/pptpd.conf` with the getway IP and client IP range:
+
 ```bash
 localip 172.16.2.1
 remoteip 172.16.2.2-254
@@ -135,6 +143,7 @@ remoteip 172.16.2.2-254
 `remoteip`: The IP range server assigned when an client connected, must be an subset of the IP range configured in the iptabs configuration section.
 
 6. Configure `ipsec` by editting the `/etc/ipsec.conf` configuration file. Here is an entire configuration template, just replace the `***.***.***.***` with your server IP.
+
 ```bash
 # /etc/ipsec.conf - Openswan IPsec configuration file
 
@@ -217,6 +226,7 @@ conn L2TP-PSK-noNAT
 ```
 
 7. Configure the `ipsec` pre-shared key, the configuration file is `/etc/ipsec.secrets`:
+
 ```bash
 # This file holds shared secrets or RSA private keys for inter-Pluto
 # authentication.  See ipsec_pluto(8) manpage, and HTML documentation.
@@ -234,6 +244,7 @@ conn L2TP-PSK-noNAT
 In the configuration file, `****.***.***.***` is the server public IP and `some-psk-string` is your customized psk.
 
 9. Configure xl2tpd, use your favorite editor to edit the `/etc/xl2tpd/xl2tpd.conf` file by repacing all the content with the following lines:
+
 ```bash
 [global]
 ipsec saref = yes
@@ -255,6 +266,7 @@ length bit = yes
 ```
 
 10. Configure ppp by replacing the content of `/etc/ppp/options.xl2tpd` with the following lines with your favorite editor:
+
 ```bash
 require-mschap-v2
 ms-dns 8.8.8.8
@@ -272,6 +284,7 @@ lcp-echo-failure 4
 ```
 
 11. Add user, all the users are defied in `/etc/ppp/chap-secrets`. Here is an example configuration:
+
 ```bash
 # Secrets for authentication using CHAP
 # client    server  secret          IP addresses
@@ -283,12 +296,14 @@ user  *   passwd  *
  `IP Addresses` = leave to * for any address or define addresses from were a user can login.
 
 12. All done, now start and test the service
+
 ```bash
 sudo service vpn restart 
 ```
 
 If every thing goes well, you will see the following outputs
-```
+
+```bash
 Restarting L2TP/Ipsec,PPTP VPN Service
 ipsec_setup: Stopping Openswan IPsec...
 ipsec_setup: Starting Openswan IPsec U2.6.38/K3.15.4-x86_64 ...
