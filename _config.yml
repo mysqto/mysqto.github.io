@@ -1,4 +1,4 @@
-pygments: true
+highlighter: rouge
 permalink: /:categories/:day-:month-:year/:title
 lsi: true
 exclude: ['README.markdown', 'README_FOR_COLLABORATORS.markdown', 'Gemfile.lock', 'Gemfile', 'Rakefile', 'LICENSE.txt']
